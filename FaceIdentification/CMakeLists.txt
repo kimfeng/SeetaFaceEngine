@@ -24,11 +24,17 @@ set(VIPLNET_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 include_directories(${VIPLNET_INCLUDE_DIR})
 include_directories(${VIPLNET_SRC_DIR})
 
+include_directories(../FaceDetection/include) 
+include_directories(../FaceAlignment/include) 
+link_directories(../FaceDetection/) 
+link_directories(../FaceAlignment/) 
+
 add_subdirectory(src)
 
 aux_source_directory(./src SRC_LIST)
 aux_source_directory(./tools TOOLS_LIST)
 add_library(viplnet SHARED ${SRC_LIST} ${TOOLS_LIST})
+#add_library(viplnet STATIC ${SRC_LIST} ${TOOLS_LIST})
 set_target_properties(viplnet PROPERTIES 
   VERSION ${VIPLNET_VERSION_MAJOR}.${VIPLNET_VERSION_MINOR} 
   SOVERSION ${VIPLNET_VERSION_MAJOR}.${VIPLNET_VERSION_MINOR}) 
